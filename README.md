@@ -17,3 +17,10 @@
     ├── comporttest.yml          < pkgttest yml file
     ├── README.md                < this file
     └── setup.py                 < file for pip install
+
+## some help
+
+
+## Useful links
+   * https://microcontrollerelectronics.com/serial-port-communication-via-python/
+   * https://microcontrollerelectronics.com/a-python-script-to-run-the-arduino-minipirate-sketch/
