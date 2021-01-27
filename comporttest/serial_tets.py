@@ -10,6 +10,7 @@ Description : Simple reminder-training example
 import json
 import os.path
 import serial,sys,glob,select
+import time
 
 def get_config_json(filename="./ect/config.json"):
     """
@@ -66,11 +67,11 @@ if __name__ == "__main__":
     ser = serial.Serial(port="/dev/ttyUSB0",baudrate="9600",parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,bytesize=serial.EIGHTBITS,timeout=5)
     print("ser.portstr = ",ser.portstr)
 
-    # D1=100
-    ser.write(b'\x44\x31\x3D\x31\x30\x30\x0D\x0A')
-    line = ser.readline()[:-2].decode('utf-8')
-    line = ser.readline()[:-2].decode('utf-8')
-    print("D1 =",line)
+    # D1=0
+    ser.write(b'\x44\x31\x3D\x30\x0D\x0A')
+    #ser.write(b'\x44\x31\x3D\x31\x30\x30\x0D\x0A')
+    line = ser.readline()
+    time.sleep(5.0)
     # D1
     ser.write(b'\x44\x31\x0D\x0A')
     line = ser.readline()
@@ -152,10 +153,19 @@ if __name__ == "__main__":
     # D1=100
     ser.write(b'\x44\x31\x3D\x31\x30\x30\x0D\x0A')
     line = ser.readline()
-    line = ser.readline()[:-2].decode('utf-8')
-    print("D1 =",line)
+    #line = ser.readline()
+    #line = ser.readline()[:-2].decode('utf-8')
+    #print("D1 =",line)
     # D2=100
     ser.write(b'\x44\x32\x3D\x31\x30\x30\x0D\x0A')
+    line = ser.readline()
+    # D1
+    ser.write(b'\x44\x31\x0D\x0A')
+    line = ser.readline()
+    line = ser.readline()[:-2].decode('utf-8')
+    print("D1 =",line)
+    # D2
+    ser.write(b'\x44\x32\x0D\x0A')
     line = ser.readline()
     line = ser.readline()[:-2].decode('utf-8')
     print("D2 =",line)
